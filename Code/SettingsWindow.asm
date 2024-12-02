@@ -40,8 +40,7 @@ SettingsWndProc jsr StdWndProc
                 jsr ApplySettings
                 jsr KillCurWindow
                 jsr RepaintAll
-                jsr PaintTaskbar
-                rts
+                jmp PaintTaskbar
 +               cmp #ID_BTN_APPLY
                 bne +
 ApplySettings   ; "Apply" was pressed
