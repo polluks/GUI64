@@ -187,8 +187,7 @@ ActionInButton  lda wndParam
                 sta ControlBits
                 jsr UpdateControl
                 jsr PaintButton
-                jsr WindowToScreen
-                rts
+                jmp WindowToScreen
 +               ; Left mouse button released in button
                 cmp #EC_LBTNRELEASE
                 bne + 
@@ -199,13 +198,11 @@ ActionInButton  lda wndParam
                 sta ControlBits
                 jsr UpdateControl
                 jsr PaintButton
-                jsr WindowToScreen
-                rts
+                jmp WindowToScreen
 +               ; Mouse was moved
                 ; only occurs when mouse enters or leaves button
                 jsr PaintButton
-                jsr WindowToScreen
-                rts
+                jmp WindowToScreen
 
 ActionInFileListScrollBox
                 lda ControlNumStr
@@ -243,8 +240,7 @@ ActionInFileListScrollBox
                 sta ControlHilIndex
 -               jsr UpdateControl
                 jsr PaintFileListScrollBox
-                jsr WindowToScreen
-                rts
+                jmp WindowToScreen
 +               lda #$ff
                 sta ControlHilIndex
                 jmp -
@@ -313,8 +309,7 @@ scroll_pg_down  ldx ControlTopIndex
                 sta ControlTopIndex
 finish          jsr UpdateControl
                 jsr PaintCurWindow
-                jsr WindowToScreen
-                rts
+                jmp WindowToScreen
 FLSB_KeyPress   lda actkey
                 cmp #$fb
                 bne ++++
@@ -373,8 +368,7 @@ ActionInColorPicker
 +               jsr GetMenuItem
                 lda res
                 sta ControlColor
-                jsr UpdateControl
-                rts
+                jmp UpdateControl
 ++              ; Click in normal mode
                 ; Fill menu struct
                 lda #ID_MENU_COLORPICKER
@@ -521,8 +515,7 @@ SetCtrlString   lda Param
                 lda $03
                 adc #0
                 sta ControlStrings+1
-                jsr UpdateControl
-                rts
+                jmp UpdateControl
 
 ; Finds control index in cur wnd from mouse pos in MousePosInWndX/Y
 ; Returns control index in res ($ff if mouse is in no control)
