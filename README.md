@@ -1,22 +1,24 @@
 ![alt text](https://github.com/WebFritzi/GUI64/blob/main/GUI64.png)
 
-# GUI64
-GUI64 is a graphical user interface for the C64 with which you can run your programs and games but also cut/copy/paste/delete/rename files or format/rename disks.
+# GUI64 v1.0
+GUI64 is a graphical user interface for the C64 that allows you to run programs and games, as well as manage files by cutting, copying, pasting, deleting, and renaming them. Additionally, it enables you to format and rename disks.
 
 **Control:**<br>
 Mouse in Port #1<br>
 Joystick in Port #2
 
+# WIP Version
+Please find the latest WIP version of GUI64 in the branch "Developer". Please be aware that this version might contain bugs, might not run smoothly, and exhibits unfinished features.
+
 # Binaries
 There are currently two options: you either download GUI64.D64 and load GUI64 from disk with LOAD"*",8,1 or you use GUI64.PRG. The latter works great with a Kung Fu Flash cartridge.
 
 # Code
-GUI64 was developed in ACME 6502 assembler with _C64 Studio_ which you can download here:<br>
-https://www.georg-rottensteiner.de/files/C64StudioRelease.zip<br>
-In C64 Studio, go to "File->Open->Solution or Project", choose GUI64.c64 and in the next file chooser click on "Cancel".<br>
-The main file is GUI64.asm.
+GUI64 was developed in 6502 assembler (ACME syntax) with _C64 Studio_ which you can download here:<br>
+<p align="center">https://www.georg-rottensteiner.de/files/C64StudioRelease.zip</p>
+To build GUI64, download the files in the "Code" folder and open C64 Studio. In C64 Studio, go to "File->Open->Solution or Project", choose GUI64.c64, and in the next file browser click on "Cancel". The main file is GUI64.asm.<br><br>
 
-Here is the current memory map of GUI64:
+**Memory map of GUI64 v1.0**
 
 Code and fixed data:<br>
 $033c - $5700 : Program<br>
@@ -34,8 +36,12 @@ $7c00 - $8000 : buffer for color data<br>
 $8000 - $9000 : string list for drive 8<br>
 $9000 - $a000 : string list for drive 9
 
+# Coming in Version 1.1 (Work in Progress)
+* A file viewer which lets you look into files either in text mode or in hex mode.
+* Support of device numbers other than #8 and #9.
+* SD2IEC support
+* A new menu item in the disk browser window
+* Rearrangement of the memory map. For example, graphics data (char sets and sprites) are now copied to the RAM under the kernal when GUI64 starts. There will be a free area in RAM dedicated to applications.
+
 # Future Plans
-The next big leap will be to make a cartridge version of GUI64. But for this, I'll have to get familiar with C64 cartridge programming.
-Other plans:
-* improve keyboard input
-* long button press on controls (e.g., updown control or scrollbar arrows)
+The next big leap will be a cartridge version of GUI64 v1.1. For this, I'll have to become familiar with C64 cartridge programming.
